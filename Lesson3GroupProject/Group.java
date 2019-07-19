@@ -79,7 +79,7 @@ public class Group {
 				throw new GroupOverflowException("The group is empty!");
 			}
 			for (int i = 0; i < stud.length; i++) {
-				if (stud[i] == leav) {
+				if (stud[i].getStID()==leav.getStID()) {
 					stud[i] = null;
 					counter -= 1;
 					break;
