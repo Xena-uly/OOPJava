@@ -27,11 +27,6 @@ public class Recruit implements Voencom {
 	}
 	
 	
-	//@Override
-	//public String toString() {
-	//	return "Recruit [gr=" + gr + "]";
-	//}
-
 	@Override
 	public Student [] youInTheArmyNow() {
 		this.count = 0;
@@ -48,7 +43,6 @@ public class Recruit implements Voencom {
 			if (gr.getStud()[i] != null) {
 				if ((gr.getStud()[i].getAge() >= 18) && (gr.getStud()[i].getSex() == Sex.MALE)) {
 					armyGuys[point] = gr.getStud()[i];
-					//System.out.println(armyGuys[point]);
 					point++;
 				}
 			}
@@ -58,13 +52,10 @@ public class Recruit implements Voencom {
 	}
 	@Override
 	public String toString() {
-		//System.out.println(count);
 		String[] sortString = new String[youInTheArmyNow().length];
-		//String sortString1 = Arrays.toString(youInTheArmyNow());
 		for (int i = 0; i < sortString.length; i++) {
-				sortString[i] = this.youInTheArmyNow()[i].toString();  //Arrays.toString(youInTheArmyNow()[i]); 
+		sortString[i] = this.youInTheArmyNow()[i].toString(); 
 		}
-		//String sortString=Arrays.toString(youInTheArmyNow());
 		return String.join("\n", sortString);
 	}
 	
