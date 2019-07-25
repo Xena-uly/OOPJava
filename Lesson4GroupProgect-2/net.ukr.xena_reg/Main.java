@@ -18,7 +18,8 @@ public class Main {
 				int result = JOptionPane.showConfirmDialog(null, "Add new student", "Create the group",
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					basic.addStudent(basic.collectNeo());
+					Student neo=new Student();
+					basic.addStudent(basic.collectNeo(neo));
 				} else {
 					JOptionPane.showMessageDialog(null, "Cancel");
 					break;
@@ -28,17 +29,26 @@ public class Main {
 			finally {
 			}
 		}
+		
+		System.out.println("********************** Just created group");
+		System.out.println(basic);
 		System.out.println("********************** Remove Student[0]");
 		basic.removeStudent(basic.getStud()[0]);
-		System.out.println("********************** Add Student[0]");
-		basic.addStudent(basic.getStud()[0]);
+		System.out.println(basic);
+		System.out.println("********************** Add Student");
+		Student neo=new Student();
+		basic.addStudent(basic.collectNeo(neo));
+		System.out.println(basic);
 		System.out.println("********************** Sort the Group by the Last Name");
-		System.out.println(basic.SortByLastName(basic));
+		System.out.println(basic.sortByLastName(basic));
 		System.out.println("********************** Sort the Group by the Student ID");
-		System.out.println(basic.SortByStudID(basic));
+		System.out.println(basic.sortByStudID(basic));
 		System.out.println("********************** Recrut list");
-		Recruit rc = new Recruit(basic);
-		System.out.println(rc);
+		Student [] recrutlist= new Student [basic.youInTheArmyNow().length];
+		recrutlist=basic.youInTheArmyNow();
+		Group recrut=new Group();
+		recrut.setStud(recrutlist);
+		System.out.println(recrut);
 			
 	}
 }
