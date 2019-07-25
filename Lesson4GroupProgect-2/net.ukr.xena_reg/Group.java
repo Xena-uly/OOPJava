@@ -13,7 +13,7 @@ import net.ukr.xena_reg.Human.Sex;
 import net.ukr.xena_reg.exception.GroupOverflowException;
 //import net.ukr.xena_reg.exception.NegativeValumeException;
 
-public class Group {
+public class Group implements Voencom {
 
 	private Student[] stud = new Student[10];
 	private int counter = 0;
@@ -58,77 +58,15 @@ public class Group {
 
 	}
 
-		public Student collectNeo() {
-		Student neo = new Student();
+		public Student collectNeo(Student neo) {
+			
+		neo.takeLastName(neo);
+		neo.takeFirstName(neo);
+		neo.takeSex(neo);
+		neo.takeBirthDate(neo);
+		neo.takeStudID(neo);
+		neo.takeStudRB(neo);
 
-		for (;;) {
-			try {
-				neo.setLastName(String.valueOf(JOptionPane.showInputDialog("Input Last Name")));
-				break;
-			} catch (NullPointerException e) {
-				JOptionPane.showMessageDialog(null, "Cancel");
-			} finally {
-			}
-		}
-
-		for (;;) {
-			try {
-				neo.setFirstName(String.valueOf(JOptionPane.showInputDialog("Input First Name")));
-				break;
-			} catch (NullPointerException e) {
-				JOptionPane.showMessageDialog(null, "Cancel");
-			} finally {
-			}
-		}
-
-		for (;;) {
-			try {
-				neo.setSex((Sex) JOptionPane.showInputDialog(null, "Choose", "Sex:", JOptionPane.OK_CANCEL_OPTION, null,
-						Sex.values(), Sex.MALE));
-				break;
-			} catch (NullPointerException e) {
-				JOptionPane.showMessageDialog(null, "Cancel");
-			} finally {
-			}
-		}
-
-		for (;;) {
-			try {
-				neo.setlBirthday(LocalDate.parse(JOptionPane.showInputDialog("Input date of birth 'yyyy-MM-dd'")));
-				break;
-			} catch (NullPointerException e) {
-				JOptionPane.showMessageDialog(null, "Input date of birth 'yyyy-MM-dd'");
-			} catch (DateTimeParseException e) {
-				JOptionPane.showMessageDialog(null, "Error date format! Input date format 'yyyy-MM-dd'");
-			} finally {
-			}
-		}
-
-		for (;;) {
-			try {
-				neo.setStID(Integer.valueOf(JOptionPane.showInputDialog("Input the student ID")));
-				break;
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Error number format");
-			} catch (NullPointerException e) {
-				JOptionPane.showMessageDialog(null, "Cancel");
-
-			} finally {
-			}
-
-		}
-
-		for (;;) {
-			try {
-				neo.setStRB(Integer.valueOf(JOptionPane.showInputDialog("Input the student Record Book")));
-				break;
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Error number format");
-			} catch (NullPointerException e) {
-				JOptionPane.showMessageDialog(null, "Cancel");
-			} finally {
-			}
-		}
 		return neo;
 	}
 
@@ -187,7 +125,7 @@ public class Group {
 		return String.join("\n", strSample);
 	}
 
-	public Group SortByLastName(Group a) {
+	public Group sortByLastName(Group a) {
 		Student[] sGroup = new Student[stud.length];
 		Group sortGroup = new Group();
 		System.arraycopy(a.getStud(), 0, sGroup, 0, stud.length);
@@ -196,13 +134,36 @@ public class Group {
 		return sortGroup;
 	}
 
-	public Group SortByStudID(Group a) {
+	public Group sortByStudID(Group a) {
 		Student[] sGroup = new Student[stud.length];
 		Group sortGroup = new Group();
 		System.arraycopy(a.getStud(), 0, sGroup, 0, stud.length);
 		Arrays.sort(sGroup, new GroupStudIDComporator());
 		sortGroup.setStud(sGroup);
 		return sortGroup;
+	}
+	
+	@Override
+	public Student[] youInTheArmyNow() {
+		int count = 0;
+		for (int i = 0; i < stud.length; i++) {
+			if (stud[i] != null) {
+				if ((stud[i].getAge() >= 18) && (stud[i].getSex() == Sex.MALE)) {
+					count++;
+				}
+			}
+		}
+		Student[] armyGuys = new Student[count];
+		int point = 0;
+		for (int i = 0; i < stud.length; i++) {
+			if (stud[i] != null) {
+				if ((stud[i].getAge() >= 18) && (stud[i].getSex() == Sex.MALE)) {
+					armyGuys[point] = stud[i];
+					point++;
+				}
+			}
+		}
+		return armyGuys;
 	}
 
 }
