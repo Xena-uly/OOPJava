@@ -31,7 +31,8 @@ public class SelectiveMarging {
 			for (String wordfs1 : fs1.split("\\s")) {
 				for (String wordfs2 : fs2.split("\\s")) {
 					if (wordfs1.equalsIgnoreCase(wordfs2)) {
-						mf.write(wordfs1 + " ");
+						mf.write(wordfs1);
+						mf.newLine();
 					}
 				}
 			}
