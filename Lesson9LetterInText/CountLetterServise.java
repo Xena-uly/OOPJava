@@ -13,7 +13,7 @@ import java.util.List;
 public class CountLetterServise {
 
 	String fileName;
-	List<Letter> letterList = new ArrayList<Letter>();
+	private List<Letter> letterList = new ArrayList<Letter>();
 
 	public String getFileName() {
 		return fileName;
