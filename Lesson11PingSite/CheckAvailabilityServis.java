@@ -29,8 +29,7 @@ public class CheckAvailabilityServis {
 			return siteList;
 		} catch (IOException e) {
 			System.out.println("ERROR READ FROM FILE!");
-		} finally {
-		}
+		} 
 		return siteList;
 	}
 
